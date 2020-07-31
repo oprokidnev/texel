@@ -12,13 +12,7 @@
   "plugins": ["prettier"],
   "rules": {
     "@typescript-eslint/interface-name-prefix": 0,
-    "@typescript-eslint/explicit-function-return-type": [
-      "warn",
-      {
-        "allowExpressions": true,
-        "allowTypedFunctionExpressions": true
-      }
-    ],
+    "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-empty-interface": 0,
     "prettier/prettier": ["error", { "singleQuote": true }],
     "react/prop-types": 0

@@ -1,6 +1,3 @@
-import axios from 'axios';
-import config from '../config';
-
 export interface BaseParameter {
   type: string;
   name: string;
@@ -26,10 +23,21 @@ export interface WebService {
     input: Parameters;
     output: any;
   };
+  commands: {
+    [commandName: string]: string;
+  };
 }
 
-export const getServices = (): Promise<WebService[]> => {
-  return axios
-    .get<WebService[]>(`${config.getEndpoint()}/web-services`)
-    .then((res) => res.data);
-};
+export interface ServerResponse {
+  name: string;
+  title: string;
+  description: string;
+  parameters: {
+    input: Parameters;
+    output: any;
+  };
+}
+
+export interface FormData {
+  [k: string]: string;
+}

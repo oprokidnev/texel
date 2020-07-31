@@ -1,17 +1,21 @@
-import express from "express";
-import webServices from './web-services/index';
-import cors from 'cors';
+import express from 'express';
+import webServices from './texel';
+import cors from 'cors'; // default port to listen
+
+import { run as startQueueWorker } from './redis-worker';
+
+startQueueWorker();
 
 const app = express();
-const port = 6060; // default port to listen
+const port = 6060;
 
 /**
  * Apply cors rules for developer frontend
  */
 app.use(
   cors({
-    origin: 'http://localhost:3000'
-  }),
+    origin: 'http://localhost:3000',
+  })
 );
 
 // define a route handler for the default home page
