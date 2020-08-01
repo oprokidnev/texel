@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import cors from 'cors';
 import serviceConfig from './config.json';
-import db, { Command } from './database';
+import { Command } from './database';
 import bodyParser from 'body-parser';
-import commandQueue from './redis-worker';
+import commandQueue from './command-queue';
 const webServices = Router();
 
 webServices.use(

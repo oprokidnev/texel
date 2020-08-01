@@ -1,22 +1,14 @@
-import Queue from 'bull';
 import { exec } from 'child_process';
 import serviceConfig from './config.json';
 import { WebService } from '../src/services/interfaces';
 import { promisify } from 'util';
 import { fromPairs } from 'lodash';
+import commandQueue from './command-queue';
 
 const execAsync = promisify(exec);
 
-const processCommandQueue = new Queue('process-command', {
-  redis: {
-    host: process.env.REDIS_HOST,
-    port: 6379,
-    password: process.env.REDIS_PASS,
-  },
-});
-
-export const run = () => {
-  processCommandQueue.process(async (job, done) => {
+export const start = () => {
+  commandQueue.process(async (job, done) => {
     const { params } = job.data;
     const commands = (serviceConfig as WebService).commands;
 
@@ -37,5 +29,3 @@ export const run = () => {
     done(null, result);
   });
 };
-
-export default processCommandQueue;

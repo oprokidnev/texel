@@ -28,6 +28,6 @@
     ]
   },
   "commands": {
-    "start": "echo ${input_num} ${input_text}"
+    "start": "./start.sh ${input_num} ${input_text}"
   }
 }
